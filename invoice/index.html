@@ -60,9 +60,9 @@
                     </div>
 
                     <div class="col-6 pr-0">
-                        <label for="Currency">Currency</label>
+                        <label for="currency">Currency</label>
                         <div class="form-group">
-                            <select class="form-control" id="Currency" onchange="currency(value)" >
+                            <select class="form-control" id="currency" onchange="currencyFunc(value)" >
                                 <option value="INR">Indian Rupee - INR</option>
                                 <option value="GBP">British Pound - GBP</option>
                                 <option value="USD">U.S. dollar - USD</option>
@@ -144,7 +144,8 @@
                         <td>
                             <div class="form-group">
                                 <textarea class="form-control" id="itemName" rows="2" placeholder="Item Decription"></textarea>
-                                <a class="btn btn-outline-secondary ml-1"  style="border: 1px solid #ced4da;" onclick="duplicate()"><i class="fa fa-copy"></i></a>
+                                <button class="btn btn-outline-secondary justify-content-end deleteRow" style="border: 1px solid #ced4da;"><i class="fa fa-times"></i></button>
+                                <button class="btn btn-outline-secondary ml-1"  style="border: 1px solid #ced4da;" onclick="duplicate()"><i class="fa fa-copy"></i></button>
                             </div> 
                         </td>
                         <td>
@@ -214,12 +215,42 @@
             $('#datepicker').datepicker();
         });
 
+        $("#items").on('click', '.deleteRow', function () {
+            console.log("Deleting Row")
+            itemAmount = parseInt(document.getElementById('amount').value);
+
+            subtotal = subtotal - itemAmount;
+            document.getElementById('subtotal').innerHTML = subtotal;
+            document.getElementById("taxAmount").innerHTML = subtotal*.20;
+            document.getElementById("total").innerHTML = subtotal*1.20;
+            document.getElementById("finaltotal").innerHTML = subtotal*1.20;
+            $(this).closest('tr').remove();
+        });
+
         var subtotal = 0;
         var originalAmount=0;
         var curr = 'INR'; //chosen currency
-        currency('INR');
-        function currency(newCurr){ //updates chosen currency
+        currencyFunc('INR');
+        const api = "https://api.exchangerate-api.com/v4/latest/USD";
+        function currencyFunc(newCurr){ //updates chosen currency
+            // var table = document.getElementById('table-body');
+            // if(table.length > 0){
+            //     table.find('tr').each(function (i, el) {
+            //         var convertedRate = parseInt($(this).find("#rate").val()) / 80;
+            //         var convertedAmount = parseInt($(this).find("#quantity").val()) * convertedRate;
+            //         console.log("Converted Rate: ", convertedRate, convertedAmount)
+            //         $(this).find("#quantity").val() = convertedAmount
+            //         // var $tds = $(this).find('td'),
+
+            //         //     productId = $tds.eq(0).text(),
+            //         //     product = $tds.eq(1).text(),
+            //         //     Quantity = $tds.eq(2).text();
+            //     });
+            // }
+            
             curr = newCurr;
+            originalcurr = document.getElementById("currency").value;
+            console.log("currency",originalcurr);
             document.getElementById("currSet1").innerHTML = curr;
             document.getElementById("currSet2").innerHTML = curr;
         }
@@ -233,11 +264,11 @@
             originalAmount = parseInt(document.getElementById('amount').value);
             if(isNaN(originalAmount)){
                 originalAmount = 0;
-            }          
+            }
             document.getElementById('amount').value= amount;
             calcTotal(amount);
         }
-        
+
         function calcTotal(amount){ //calculate total amount
             subtotal = subtotal - originalAmount + parseInt(amount);
             originalAmount=0;
@@ -296,5 +327,6 @@
             document.getElementById("downloadButton").innerHTML = "Generate PDF";//End of downloading
         }
     </script>
+    
 </body>
 </html>
