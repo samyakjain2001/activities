@@ -1,0 +1,190 @@
+<script>
+  
+    var Name = "Sammy"; // can be used anywhere in the program
+    // console.log("Hello", Name, "here, Wassup!?");
+    
+    let newName = "Samyak" //can only be used within the scope you declare.
+    console.log("Hello", Name, "new name!");
+  
+    const pi = 3.14;
+  
+    var a; // only dec;aring a variable
+    console.log(a)
+    a = 7; //assigning value to the variable
+    console.log(a)
+    var b = 9; // declaring variable with assigning value
+    console.log(a)
+    
+    var myVar = 99;
+    myVar++; //increment operator: increment by 1
+    console.log(myVar);
+    myVar--; //decrement operator
+    console.log(myVar);
+  
+    var y = 5.7;
+    console.log(y);
+  
+    var remainder = 11;
+    console.log(11 % 5)
+  
+    var p = 7;
+    p += 3; // compound addition operator
+    console.log(p);
+    p -= 5; // compound subtraction operator
+    console.log(p);
+    p *= 10; // compound multiplication operator
+    console.log(p);
+    p /= 25; // compound division operator
+    console.log(p);
+  
+    //All About Strings
+    var x = "This is a"; 
+    x = x + " String!"; //concatenation of strings
+    x += " String!!"
+    console.log(x)
+  
+    var myStr = 'This is first "double quoted" string';
+    console.log(myStr);
+    var myStr = "This is second \"double quoted\" string";
+    console.log(myStr);
+    myStr = `This is third "double quoted" string`;
+    console.log(myStr);
+  
+    var link = '<a href="https://www.w3schools.com/" target="_blank">Link</a>';
+    link = "<a href=\"https://www.w3schools.com/\" target=\"_blank\">Link</a>";
+    link = `<a href="https://www.w3schools.com/" target="_blank">Link</a>`;
+    console.log(link);
+    myStr = "\nFirstLine\n\tSecondLine\nThirdLine";
+    console.log(myStr);
+
+    var str1 = "HAPPIER!";
+    var str2 = "Searce is ";
+    str2 += str1; //appending to the string
+    console.log(str2);
+
+    var immutable = "Jello World";
+    immutable[0] = "H"; // strings are immutable and this will give error
+    console.log(immutable);
+    immutable = "Hello World"; //you can change the whole string
+    console.log(immutable);
+    
+    var newStr = "SEARCE";
+    stringLength = newStr.length; // .length method gives the length if the string
+    console.log('Length of string "' + newStr + '" is ' + stringLength);
+    firstLetterOfString = newStr[0]; // 0 based indexing
+    lastLetterOfString = newStr[stringLength - 1]; // 0 based indexing
+    console.log('First letter of the string: "' + firstLetterOfString + '"\nLast letter of the String: "' + lastLetterOfString + '"')
+    
+    function wordBlanks(myNoun, myAdjective, myVerb, myAdverb){
+        var result = "";
+        result += "The " + myAdjective + " " + myNoun+ " " + myVerb + "to the store " + myAdverb ;
+        return result;
+    }
+    console.log(wordBlanks("dog", "big", "ran", "quickly"));
+    console.log(wordBlanks("bike", "slow", "flew", "slowly"));
+
+    // ARRAYS
+    var ourArray = ["Searce", 7];
+    var myArray = ["Pune", 1];
+
+    var newArray = [ ["the universe", 42], ["everything", 1001] ]; //nested ARRAYS
+    
+    var ourArray = [10, 20, 30];
+    console.log("First element in array is", ourArray[0]); //access with square braces with 0 based indexing
+    ourArray[0] = 11;
+    console.log("Updated Array: ", ourArray);
+    
+    var myArray = [[1,2,3], [4,5,6], [7,8,9], [[10,11,12], 13, 14]];
+    console.log(myArray[3][0][2]) //use no of square brackets to access nested arrays with 0based indexing
+
+    //you can append data to the array with push function
+    console.log("Original Array: ", ourArray);
+    ourArray.push(40); //appending the data
+    console.log("Updated Array: ", ourArray);
+    ourArray.pop(); //removing the last element from the array
+    console.log("Updated Array after pop: ", ourArray);
+    ourArray.shift(); //removing the first elemtn from the array
+    console.log("Updated Array after shift: ", ourArray);
+    ourArray.unshift("10"); //removing the first elemtn from the array
+    console.log("Updated Array after Unshift '10': ", ourArray);
+    
+    var shoppinList = [['cereal', 3], ["bananas", 3], ["juice", 2]] //array of array for shopping list
+
+    
+    // ALL ABOUT FUNCTIONS
+    function first(){
+        console.log("Hello World!");
+    }
+    first();
+    function functionWithArgs(a, b){
+        return a+b;
+    }
+    console.log(functionWithArgs(10, 20));
+    
+    //Scope: It refers to visibility of variables
+    var myGlobal = 10; //global variable as it is defined outside any function
+    function fun() {
+        var notGlobal = 100; //scope limited within this function or LOCAL SCOPE
+        oopsGlobal = 1000; //global variable bcz there is no var before the variable name
+    }
+
+    function fun2() {
+        fun();
+        var output = "";
+        if(typeof myGlobal != "undefined") {
+            output += "myGlobal: " + myGlobal;
+        } else {
+            output += "myGlobal: undefined";
+        }
+        
+        if(typeof notGlobal != "undefined") {
+            output += "\nnotGlobal: " + notGlobal;
+        } else {
+            output += "\nnotGlobal: undefined";
+        }
+        
+        if(typeof oopsGlobal != "undefined") {
+            output += "\noopsGlobal: " + oopsGlobal;
+        } else {
+            output += "\noopsGlobal: undefined";
+        }
+        console.log(output)
+    }
+    fun2();
+
+    //local and global variable with same name
+    var outerWear = "T-Shirt";
+    function myOutfit(){
+        var outerWear = "Sweater";
+        return outerWear;
+    }
+    console.log(outerWear);
+    console.log(myOutfit());
+
+    function addFive(num){
+        return num + 5; //returning a value from the function
+    }
+    console.log(addFive(10));
+
+    // var sum = 0;
+    // function addSeven(){
+    //     sum = sum + 7; //assigning a value to variable from function
+    // }
+
+    var changed = 0;
+    function change(num) {
+        return (num + 5)/ 3;
+    }
+    changed = change(10); //assignment from the return of the function
+    console.log(changed);
+
+    function nextInLine(arr, item){
+        arr.push(item);
+        return arr.shift();
+    }
+    var testArr = [1,2,3,4,5];
+    console.log("Before: " + JSON.stringify(testArr));
+    console.log(nextInLine(testArr, 6));
+    console.log("After: " + JSON.stringify(testArr));
+    
+</script>

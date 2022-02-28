@@ -1,0 +1,290 @@
+<script>
+
+    //Boolean: True or False
+    function returnBoolean() {
+        return true;
+    }
+    console.log(returnBoolean()); 
+
+    function trueOrFalse(wasThatTrue){
+        if(wasThatTrue){
+            return "Yes, that was true!";
+        } else{
+            return "No, that was false!";
+        }
+    }
+    console.log(trueOrFalse(true));
+    
+    // = is assignment operator
+    // == is used to check if the values are equal
+    function testEqual(val) {
+        if(val == 12){
+            return "Equal";
+        }
+        return "Not Equal";
+    }
+    // console.log(testEqual(10));
+    // console.log(testEqual(12));
+    // === checks weather the value as well as the datatype is equal
+    // === also called as strict equality operator
+    function testStrict(val){
+        if(val === '12'){
+            return "Equal";
+        }
+        return "Not Equal";
+    }
+    // console.log(testStrict(12)); //will return false bcz the datatypes will be different
+    // console.log(testStrict('12'));
+
+    function testNotEqual(val){
+        if(val != '12'){
+            return "Not Equal";
+        }
+        return "Equal";
+    }
+    function testStrictlyNotEqual(val){
+        if(val !== '12'){ //will check if the values and datatypes are not equal
+            return "Not 'Strictly Equal'";
+        }
+        return "'Strictly Equal'";
+    }
+    console.log(testNotEqual(12));
+    console.log(testStrictlyNotEqual(12));
+
+    function testGreaterThan(val){
+        if( val > 100){
+            return "Greater than 100";
+        } return "Not greater than 100";
+    }
+    console.log(testGreaterThan(100));
+
+    function testGreaterOrEqual(val){
+        if( val >= 100){
+            return "Greater than Or Equal to 100";
+        } return "Not greater than 100";
+    }
+    console.log(testGreaterOrEqual(100));
+
+    function testLesserOrEqual(val){
+        if( val <= 100){
+            return "Lesser than Or Equal to 100";
+        } return "Not lesser than 100";
+    }
+    console.log(testLesserOrEqual(100));
+
+    function testLogicalAnd(val){
+        if(val<= 50 && val >= 25){
+            return "Yes";
+        }
+        return "No";
+    }
+    console.log(testLogicalAnd(100));
+    function testLogicalOr(val){
+        if(val>= 50 || val <= 25){
+            return "Outside";
+        }
+        return "No";
+    }
+    console.log(testLogicalOr(100));
+
+    function testElseIf(val){ //else if for multiple if statements
+        if(val > 10){
+            return "Greater than 10";
+        } else if(val < 5){
+            return "Smaller than 5";
+        } else{
+            return "Between 5 and 10";
+        }
+    } //order of the else if statements is important
+    console.log(testElseIf(7));
+
+    function testSize(val){
+        if(val< 5){
+            return "Tiny";
+        } else if(val < 10){
+            return "Small";
+        } else if(val < 15){
+            return "Medium";
+        } else if(val < 20){
+            return "Large";
+        } else{
+            return "Huge";
+        }         
+    }
+    console.log(testSize(17));
+
+    //Golf-Code
+    var names = ["Hole-in-One", "Eagle", "Birdie", "Par", "Bogey", "Double Bogey", "Go Home"]
+    function golfScore(par, strokes){
+        if(strokes == 1){
+            return names[0];
+        } else if(strokes <= par-2){
+            return names[1];
+        } else if(strokes == par-1){
+            return names[2];
+        } else if(strokes == par){
+            return names[3];
+        } else if(strokes == par+1){
+            return names[4];
+        } else if(strokes == par+2){
+            return names[5];
+        } else if(strokes >= par+3){
+            return names[6];
+        }
+    }
+    console.log(golfScore(5,4));
+    console.log(golfScore(5,2));
+    console.log(golfScore(5,1));
+
+    //Switch Statements can be used in okace of chain of 'if statements'
+    function caseInSwitch(val){
+        var answer = "";
+        switch(val){
+            case 1:
+                answer = "alpha";
+                break; //it makes go out of the switch statements
+            case 2:
+                answer = "beta";
+                break; // if not fir break statement it will run throught the remaining code
+            case 3:
+                answer = "gamma";
+                break;
+            case 4:
+                answer = 'delta';
+                break;
+        }
+        return answer;
+    }
+    console.log(caseInSwitch(2));
+    console.log(caseInSwitch(4));
+
+    //multiple identical options in switch statements
+    function sequentialSizes(val) {
+        var answer = "";
+        switch(val){
+            case 1:
+            case 2:
+            case 3:
+                answer = "Low";
+                break;
+            case 4:
+            case 5:
+            case 6:
+                answer = "Med";
+                break;
+            case 7:
+            case 8:
+            case 9:
+                answer = "High";
+                break;
+            default: //if the switch doesn't matches to any of the cases
+                answer = "Very High";
+        }
+        return answer;
+    }
+    console.log(sequentialSizes(7));
+    console.log(sequentialSizes(100));
+
+    //Counting Cards
+    var count = 0;
+    function cc(card){
+        switch(card){
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+                count++; //increments by 1
+                break;    
+            case 10:
+            case "J":
+            case "Q":
+            case "K":
+            case "A":
+                count--;
+                break;
+        }
+        var holdbet = 'Hold';
+        if(count > 0){
+            holdbet = 'Bet';
+        }
+        return count + " " + holdbet;
+    }
+    cc(2); cc('K'); cc(10); cc('A'); cc('K');
+    console.log(cc(4));
+
+    //OBJECTS
+    var ourDog = {
+        "name": "Camper",
+        "legs": 4,
+        "tails": 1,
+        "friends": ["everything!"]
+    };
+    
+    //accessing objects with dot operators
+    var testObj = {
+        "hat": "ballcap",
+        "shirt": "jersey",
+        "shoes": "cleats",
+        "the watch": "fossil"
+    };
+    var hatValue = testObj.hat;
+    var shirtValue = testObj.shirt;
+    var shoesValue = testObj['shoes']; 
+    var shirtValue = testObj["the watch"];
+    //bracket notation for the property with the space in the name
+    //bracket notation can also be used to look up obj properties using variables
+    var players = {
+        7: "M.S Dhoni",
+        18: "V. Kohli",
+        45: "Rohit Sharma"
+    };
+    var playerNumber = 7;
+    var player = players[playerNumber];
+    //Updating object properties
+    var ourDog = {
+        "name": "Camper",
+        "legs": 4,
+        "tails": 1,
+        "friends": [ ]
+    };
+    ourDog.friends = ["everything!"]; //updating the value
+    // console.log(ourDog.friends);
+    //Add new value: Dot notation / bracket notation
+    ourDog.bark = "bow-wow";
+    ourDog["colour"] = "White";
+    //delete a property from the object
+    delete ourDog.colour;
+    console.log(ourDog.colour) //this will give undefined as output
+
+    //using objects lookup
+    function phoneticLookup(val) {
+        var lookup = {
+            "alpha": "Adams",
+            "bravo": "Boston",
+            "charlie": "Chicago",
+            "delta": "Denver",
+            "echo": "Easy",
+            "foxtrot": "frank"
+        };
+        result = lookup[val];
+        return result;
+    }
+    console.log(phoneticLookup("foxtrot"));
+
+    var myObj = {
+        gift: "pony",
+        pet: "kitten",
+        bed: "sleigh"
+    };
+    function checkObj(checkProp) {
+        if(myObj.hasOwnProperty(checkProp)){
+            return myObj[checkProp];
+        } else{
+            return "Not Found";
+        }
+    } //hasOwnProperty method checks wether the object has the property or not
+    console.log(checkObj("gift"));
+    console.log(checkObj("hello"));
+
+</script>
