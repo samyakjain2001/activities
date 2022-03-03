@@ -1,0 +1,135 @@
+<script>
+    // const q = new Rectangle(); //this will give ReferenceError as the 'Hoisting' doesn't work for Classes
+    // class Rectangle {
+    //     constructor(height, width) {
+    //         this.height = height;
+    //         this.width = width;
+    //         console.log('From Class')
+    //     }
+    // };
+    // const p = new Rectangle();
+    
+    
+    //Methods in class
+    // class Rectangle {
+    //     constructor(height, width) {
+    //         this.height = height;
+    //         this.width = width;
+    //     }
+
+    //     // Method
+    //     calculateArea() {
+    //         return this.height * this.width;
+    //     }
+    // }
+    // const square = new Rectangle(10, 10);
+    // console.log(square.calculateArea()); // 100
+
+
+    // // // //Generators in class:
+    // class Polygon {
+    //     constructor(...sides) {
+    //         this.sides = sides;
+    //     }
+    //     // Generator Method
+    //     *getSides() {
+    //         for(const side of this.sides){
+    //             yield side;
+    //         }
+    //     }
+    // }
+    // const pentagon = new Polygon(1,2,3,4,5);
+    // console.log([...pentagon.getSides()]); // [1,2,3,4,5]
+
+    // // Static methods and properties
+    // class Point {
+    //     constructor(x, y) {
+    //         this.x = x;
+    //         this.y = y;
+    //     }
+    //     static displayName = "Point";
+    //     static distance(a, b) {
+    //         const dx = a.x - b.x;
+    //         const dy = a.y - b.y;
+    //         return Math.hypot(dx, dy);
+    //     }
+    // }
+    // const p1 = new Point(5, 5);
+    // const p2 = new Point(10, 10);
+    // console.log(p1.displayName); // undefined
+    // console.log(p2.displayName); // undefined
+    // // console.log(p2.distance());    // undefined
+
+    // console.log(Point.displayName);      // "Point"
+    // console.log(Point.distance(p1, p2)); // 7.0710678118654755
+
+
+    // // // //Inheritance
+    // class Animal {
+    //     constructor(name) {
+    //         this.name = name;
+    //         console.log('This is ParentClass');
+    //     }
+    //     speak() {
+    //         console.log(`${this.name} makes a noise.`);
+    //     }
+    // }
+    // class Dog extends Animal{
+    //     constructor(name) {
+    //         super(name); // call the super class constructor and pass in the name parameter
+    //         console.log('This is ChildClass');
+    //     }
+    //     speak() {
+    //         console.log(`${this.name} barks.`);
+    //     }
+    // }
+    // let d = new Dog('Mitzie');
+    // d.speak(); // Mitzie barks.
+
+
+    // // // //Getters and Setters
+    // class MyClass {
+    //     constructor() {
+    //         this.names_ = [];
+    //     }
+    //     set name(value) {
+    //         this.names_.push(value);
+    //     }
+    //     get name() {
+    //         return this.names_[this.names_.length - 1];
+    //     }
+    // }
+    // const myClassInstance = new MyClass();
+    // myClassInstance.name = 'Joe';
+    // myClassInstance.name = 'Bob';
+    // console.log(myClassInstance.name); //getter method
+    // console.log(myClassInstance.names_); //property of the Class
+    
+    // // // //Dynamic Method Names:
+    // let METADATA = 'metadata';
+    // class Car {
+    //     constructor (make, model) {
+    //         this.make = make;
+    //         this.model =model;
+    //     }
+    //     [METADATA]() {
+    //         return {
+    //             make: this.make,
+    //             model: this.model
+    //         };
+    //     }
+
+    //     ["add"](a, b){ //as simple as add(a, b)
+    //         return a+b;
+    //     }
+
+    //     [1+2](){
+    //         return "three";
+    //     }
+    // };
+    // let MazdaMPV = new Car('Mazda', 'MPV');
+    // console.log(MazdaMPV.add(4, 5)); //return 9
+    // console.log(MazdaMPV[5-2]()); //return "three"
+    // console.log(MazdaMPV[METADATA]()); //return {make: "Mazda", model: "MPV"};
+</script>
+<script src="../problem_statement/waterTrapped.js"></script>
