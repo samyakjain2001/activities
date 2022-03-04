@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="conainter" style="padding: 5% 11%;">
+        <div class="blogs">
+            <h1>MyBlogs</h1>
+            <ul id="blogLists"></ul>
+        </div>
+    </div>
+    
+    <script>    
+        var blogPosts = [
+            {
+                id: 1,
+                title: "how to center a div",
+                likes: 122,
+                comments: 4,
+            },
+            {
+                id: 2,
+                title: "Learn javascript basics",
+                likes: 150,
+                comments: 40,
+            },
+            {
+                id: 3,
+                title: "how to ask questions",
+                likes: 122,
+                comments: 14,
+            },
+            {
+                id: 4,
+                title: "Basic salary in silicon valley",
+                likes: 142,
+                comments: 2,
+            },
+            {
+                id: 5,
+                title: "How to use vscode in 2022",
+                likes: 102,
+                comments: 10,
+            },
+        ];
+        const mostInteractedFirst = (blogPosts) => {
+            return blogPosts.sort((a,b) => {
+                return a.title.localeCompare(b.title);
+            }).sort((a,b) => {
+                return b.comments - a.comments;
+            }).sort((a,b) => {
+                return b.likes - a.likes;
+            });
+        };
+        blogPosts = mostInteractedFirst(blogPosts);
+
+        const print = (blogPosts) => {
+            items = mostInteractedFirst(blogPosts);
+            var html = ""
+            for(var i =0; i<items.length; i++){
+                html += `<li id='${items[i].id}'><h3> ${items[i].title}</h3> <p>Likes:${items[i].likes} <a onClick="doLikes(${items[i].id}, 1)">+</a> <a onClick="doLikes(${items[i].id}, -1)">--</a>, Comments: ${items[i].comments} <a onClick="doComments(${items[i].id}, 1)">+</a>  <a onClick="doComments(${items[i].id}, -1)">--</a></p></li>`;
+            }
+            var blogLists = document.getElementById("blogLists");
+            blogLists.innerHTML = html;
+        };
+        function doComments(id, ctr){
+            var item = blogPosts.find(item => item.id === id);
+            item.comments = item.comments + ctr;
+            print(blogPosts);
+        }
+        function doLikes(id, ctr){
+            var item = blogPosts.find(item => item.id === id);
+            item.likes = item.likes + ctr;
+            print(blogPosts);
+        }
+        print(blogPosts);
+    </script>
+</body>
+</html>
