@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="clickMe">Click Me</button>
+
+    <script>
+        //MAPS FUNCTION
+        const arr = [5, 1, 3, 2, 6];
+    
+        function double(x){
+            return x*2;
+        } //named function
+    
+        const triple = function(x) {
+            return x*3;
+        } //anonymous function
+    
+        const binary = (x) => { return x.toString(2)} //arrow function
+    
+        var output = arr.map(double);
+        // console.log(output);    
+        output = arr.map(triple);
+        // console.log(output);
+        // output = arr.map(binary);
+        output = arr.map((x) => x.toString(2));
+        // console.log(output);
+    
+        //FILTER FUNCTION
+        const isOdd = (x) => { return x % 2; }
+        output = arr.filter(isOdd);
+        // console.log(output);
+        output = arr.filter(function (x){
+            return x%2 === 0;
+        });
+        // console.log(output);
+    
+        //REDUCE FUNTION
+        function findSum(arr){
+            let sum = 0;
+            for(var i=0; i<arr.length; i++)
+                sum += arr[i];            
+            return sum;
+        }
+        // console.log(findSum(arr));
+        output = arr.reduce(function(acc, curr) { 
+            acc = acc+ curr;
+            return acc;
+        }, 0);
+        // console.log(output);
+    
+        const findMax = function(arr){
+            let maxE = arr[0];
+            for(var i=1; i<arr.length; i++)
+                maxE = Math.max(maxE, arr[i]);
+            return maxE;
+        }
+        output =arr.reduce(function(acc, curr){
+            acc = Math.max(acc,  curr);
+            return acc;
+        }, 0);
+        // console.log(output);
+    
+    
+        const users = [
+            { firstName: "akshay", lastName: "saini", age: 26 },
+            { firstName: "donald", lastName: "trump", age: 75 },
+            { firstName: "elon", lastName: "musk", age: 50 },
+            { firstName: "deepika", lastName: "padukone", age: 26 },
+        ];
+    
+        //list of full names
+        // function fullName(x){
+        //     return x.firstName + " " + x.lastName;
+        // }
+        const list = users.map((x) => x.firstName+ " " +x.lastName);
+        // console.log(list);
+    
+        const ageList = users.reduce(function(acc, curr){
+            if(acc[curr.age]){
+                acc[curr.age]++;
+            } else{
+                acc[curr.age] = 1;
+            }
+            return acc;
+        }, {});
+        // console.log(ageList);
+    
+        const young = 
+            users.filter( x => (x.age <= 30) )
+            .map( x => x.firstName );
+        
+        // young = users.reduce(function(acc, curr){
+        //     if(curr.age <= 30)
+        //         acc.push(curr.firstName);
+        // }, [])
+        // console.log(young);
+    
+    
+        //CALLBACKS FUNCTION
+        function z(){
+            console.log("Z");
+        }
+        setTimeout(function(){
+            console.log("timer");
+        }, 3000);
+    
+        function x(y){
+            console.log("x");
+            y();
+        };
+        x(function y(){ //callback function
+            console.log("y");
+        });
+    
+        function addingEventListeners(){
+            let cnt = 0; //writing closures to make cnt variable private to this function only
+            document.getElementById("clickMe").addEventListener("click", function xyz(){
+                console.log("Button Clicke", ++cnt);
+            });
+        };
+        addingEventListeners();
+    </script>
+</body>
+</html>
