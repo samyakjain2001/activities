@@ -25,13 +25,12 @@ class HumanPlayer(Player):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + '\'s turn. Input move (0-8: ')
+            square = input(self.letter + '\'s turn. Input move (0-8): ')
             # we are going to check that this is a correct value by trying to casr
             # it to an integer, and if it's not, then we say its invalid
             # if that spot is not available on the board, we also say its invalid
             try:
                 val = int(square)
-                print(val)
                 if val not in game.available_moves():
                     raise ValueError
                 #if it dont throw an error, it is a valid sqaure
@@ -40,3 +39,10 @@ class HumanPlayer(Player):
                 print('Invalid Square. Try Again.')
 
         return val
+
+# def GeniusComputerPlayer(Player):
+#     def __init__(self, letter):
+#         super().__init__(letter)
+
+#     def get_move(self, game):
+#         if len(game.available()) == 9:
