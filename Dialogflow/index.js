@@ -50,14 +50,41 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
     }
     );
   }
-  
+  function getWeather(agent){
+    const {city, date} = agent.parameters;
+    let newdate = new Date(date);
+    let month = newdate.getMonth();
+    let day = newdate.getDate();
+    let appKey = '99db9c79508a8f4717a84ead833267f7';
+    let desc = "";
+    let url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${appKey}&units=metric`;
+    
+    return new Promise( (resolve, reject) => {
+      axios.post(url).then(function(res) {
+      	let obj = JSON.parse(res);
+        let list = obj.list;
+        
+        for(let i= 0; i<obj.list.length; i++){
+          let date = new Date(obj.list[i].dt *1000);
+          if(date.getDate()== day && date.getMonth()==month){
+            desc += obj.list[i].weather[0].description;
+    		agent.add("Weather for "+city+" on "+date+" is: "+desc);
+            break;
+          }
+        }
+      agent.add("DateString, day, month, listLength: "+ newdate);
+      });
+    });
+    agent.add("newdate, day, month: "+ newdate);
+    
+  }
   
   // Run the proper function handler based on the matched Dialogflow intent name
   let intentMap = new Map();
   intentMap.set('Default Welcome Intent', welcome);
   intentMap.set('Default Fallback Intent', fallback);
   intentMap.set('WorkStatus', updateDataInSheet);
-  //intentMap.set('GetWeather', getWeather);
+  intentMap.set('GetWeather', getWeather);
   // intentMap.set('your intent name here', googleAssistantHandler);
   agent.handleRequest(intentMap);
 });
